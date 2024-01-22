@@ -1,0 +1,20 @@
+{
+  "name": "cypressautomation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Azriani",
+  "license": "ISC",
+  "dependencies": {
+    "cypress": "^13.6.3"
+  },
+  "devDependencies": {
+    "cypress-mochawesome-reporter": "^3.8.0",
+    "cypress-xpath": "^2.0.1",
+    "mocha": "^10.2.0",
+    "mochawesome": "^7.1.3"
+  }
+}
