@@ -9,11 +9,12 @@ describe('demoblaze page', () => {
     })
   })
 
-  function accessHomepage() {
+  beforeEach( ()=> {
     cy.visit('https://www.demoblaze.com/')
     cy.title().should('eq','STORE')
     cy.wait(1000)
-  }
+  })
+
   function loginUser() {
     const loginPage = new Login();
 
@@ -78,7 +79,6 @@ describe('demoblaze page', () => {
   }
 
   it ('login and order product', ()=>{
-    accessHomepage()
     loginUser()
     searchProduct()
     addToCart()
@@ -88,7 +88,6 @@ describe('demoblaze page', () => {
   })
 
   it ('login and logout', ()=>{
-    accessHomepage()
     loginUser()
     logoutUser()
   })
