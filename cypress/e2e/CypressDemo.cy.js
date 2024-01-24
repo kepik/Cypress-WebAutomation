@@ -1,6 +1,14 @@
 import Login from "../pageObjects/LoginPage"
 
 describe('demoblaze page', () => {
+
+  let userdata;
+  before( ()=> {
+    cy.fixture("userData").then((data)=>{
+      userdata=data;
+    })
+  })
+
   function accessHomepage() {
     cy.visit('https://www.demoblaze.com/')
     cy.title().should('eq','STORE')
@@ -12,12 +20,12 @@ describe('demoblaze page', () => {
     cy.get("[data-target='#logInModal']").click()
     cy.wait(2000)
     
-    cy.fixture("userLogin").then( (data)=> {
-      loginPage.setUserName(data.username)
+    //cy.fixture("userLogin").then( (data)=> {
+      loginPage.setUserName(userdata.username)
       cy.wait(1000)
-      loginPage.setUserPass(data.password)
+      loginPage.setUserPass(userdata.password)
       cy.wait(1000)
-    })
+    //})
 
     cy.get("[onclick='logIn()']").contains("Log in").click()
     cy.wait(3000)
@@ -28,7 +36,7 @@ describe('demoblaze page', () => {
     cy.get(".list-group-item").contains("Phones").click()
     cy.wait(1000)
   //  cy.get(".hrefch").contains("Iphone 6 32gb").click()
-    cy.clickProduct("Nexus 6")
+    cy.clickProduct(userdata.productName)
     cy.wait(1000)
   }
   function addToCart() {
@@ -43,17 +51,17 @@ describe('demoblaze page', () => {
   }
   function inputUserOrder(){
     cy.get("input#name").click()
-    cy.get("input#name").type("user name")
+    cy.get("input#name").type(userdata.name)
     cy.wait(1000)
-    cy.get("input#country").type("user country")
+    cy.get("input#country").type(userdata.country)
     cy.wait(1000)
-    cy.get("input#city").type("city name")
+    cy.get("input#city").type(userdata.city)
     cy.wait(1000)
-    cy.get("input#card").type("123879238479")
+    cy.get("input#card").type(userdata.card)
     cy.wait(1000)
-    cy.get("input#month").type("10")
+    cy.get("input#month").type(userdata.month)
     cy.wait(1000)
-    cy.get("input#year").type("2029")
+    cy.get("input#year").type(userdata.year)
     cy.wait(2000)
 
     cy.get("[onclick='purchaseOrder()']").contains("Purchase").click()
